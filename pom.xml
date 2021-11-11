@@ -25,9 +25,7 @@
         <springboot-template-api.version>1.0.0-SNAPSHOT</springboot-template-api.version>
 
         <java.version>11</java.version>
-        <kotlin.version>1.4.32</kotlin.version>
-
-        <keycloak.version>7.0.0</keycloak.version>
+        <kotlin.version>1.5.31</kotlin.version>
 
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
 
@@ -222,7 +220,7 @@
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
                     <artifactId>git-commit-id-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.0.1</version> <!-- 4.9.10 -->
                     <configuration>
                         <excludeProperties>
                             <excludeProperty>git.build.user.email</excludeProperty>
