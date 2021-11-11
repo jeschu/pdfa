@@ -17,12 +17,12 @@
     <packaging>jar</packaging>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/jeschu/spring-template.git</developerConnection>
-        <url>https://github.com/jeschu/spring-template</url>
+        <developerConnection>scm:git:https://github.com/jeschu/pdfa.git</developerConnection>
+        <url>https://github.com/jeschu/pfda</url>
     </scm>
 
     <properties>
-        <springboot-template-api.version>1.0.0-SNAPSHOT</springboot-template-api.version>
+        <verapdf.version>1.18.8</verapdf.version>
 
         <java.version>11</java.version>
         <kotlin.version>1.5.31</kotlin.version>
@@ -41,6 +41,15 @@
     </properties>
 
     <dependencies>
+
+        <!-- <editor-fold desc="veraPDF"> -->
+        <dependency>
+            <groupId>org.verapdf</groupId>
+            <artifactId>pdfbox-validation-model</artifactId>
+            <version>${verapdf.version}</version>
+        </dependency>
+        <!-- </editor-fold> -->
+
         <!-- <editor-fold desc="WEB APPLICATION Dependencies"> -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

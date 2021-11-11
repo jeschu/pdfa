@@ -1,0 +1,100 @@
+spring:
+  devtools:
+    restart:
+      enabled: true
+  application:
+    name: "pdfa"
+  main:
+    banner-mode: console
+    allow-bean-definition-overriding: false
+  jmx:
+    enabled: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      INDENT_OUTPUT: false
+
+  boot:
+    admin:
+      client:
+        enabled: false
+        url: http://admin.gothaer.de:9876/admin
+        auto-registration: true
+        auto-deregistration: true
+
+server:
+  # muss gesetzt sein, damit der Link zur Applikation im spring-boot-admin-server korrekt ist - Applikation mit mit -DHOST_IP=x starten
+  # address: "${HOST_IP:localhost}"
+  # port: 8080
+
+  error:
+    whitelabel:
+      enabled: true
+    include-stacktrace: never
+
+  http2:
+    enabled: true
+  compression:
+    enabled: true
+    min-response-size: 2048
+  tomcat:
+    basedir: ""
+    accesslog:
+      enabled: true
+      pattern: "%t %a \"%r\" %s (%D ms)"
+    max-connections: 10000
+    accept-count: 100
+    max-threads: 200
+    min-spare-threads: 10
+    processor-cache: 200
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    prometheus:
+      enabled: false
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full
+
+  metrics:
+    # fügt allen Metriken den Tag "environment=local" hinzu
+    tags:
+      environment: local
+    web:
+      server:
+        request:
+          autotime:
+            enabled: true # Metriken für alle Requests generieren und nicht nur für die mit @Timed annotierten
+    export:
+      # Metriken werden an graphite/carbon gesendet
+      graphite:
+        host: metrics.gothaer.de
+        port: 2003
+        enabled: false # im default Profil deaktiviert, muss in den entsprechenden 'UAT' bzw. 'PROD' Profilen dann aktiviert werden um auf die Metriken zu greifen zu können
+        tags-as-prefix: application
+        step: 5s
+        protocol: plaintext
+      # Metriken werden an Prometheus exportiert -> hier für muss auch management.endpoint.prometheus.enabled = true gesetzt sein, damit der Prometheus-Actuator Endpoint aktiviert wird
+      prometheus:
+        enabled: false # im default Profil deaktiviert, muss in den entsprechenden 'UAT' bzw. 'PROD' Profilen dann aktiviert werden um auf die Metriken zugreifen zu können
+        descriptions: true
+
+logging:
+  level:
+    info.maila: TRACE
+    org.apache.pdfbox: INFO
+    io.micrometer: DEBUG
+    org.springframework: INFO
+    org.sp<ringframework.web: TRACE
+    org.springframework.scheduling.concurrent: WARN
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr([XRCI=%mdc{X-Request-Correlation-Id}]) %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
