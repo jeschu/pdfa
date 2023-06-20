@@ -5,7 +5,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.2.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>info.maila</groupId>
@@ -27,7 +27,7 @@
         <java.version>11</java.version>
         <kotlin.version>1.5.31</kotlin.version>
 
-        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <springfox-swagger2.version>2.10.0</springfox-swagger2.version>
 
         <kotlin-logging.version>1.11.5</kotlin-logging.version>
         <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
